@@ -18,7 +18,7 @@ class ModelViewController: UIViewController {
     private var videoOutput = AVCaptureVideoDataOutput()
     private var sessionQueue = DispatchQueue(label: "session")
     private var bufferQueue = DispatchQueue(label: "buffer")
-    private var predictor = Predictor()
+//    private var predictor = Predictor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,18 +94,18 @@ class ModelViewController: UIViewController {
      func process(buffer: [Float]?) {
         guard let pixelBuffer = buffer else { return }
          
-        let result = predictor.predict(pixelBuffer, resultCount: 2)
-         
-        DispatchQueue.main.async {
-            guard let isEmpty = result?.first?.label.isEmpty, !isEmpty else { return }
-            
-            // print(result)
-            if (result?.first!.score)! > 1.0 {
-                self.resultLabel.text = result?.first?.label
-            }else{
-                self.resultLabel.text = ""
-            }
-        }
+//        let result = predictor.predict(pixelBuffer, resultCount: 2)
+//         
+//        DispatchQueue.main.async {
+//            guard let isEmpty = result?.first?.label.isEmpty, !isEmpty else { return }
+//
+//             git push -u origin mainprint(result)
+//            if (result?.first!.score)! > 1.0 {
+//                self.resultLabel.text = result?.first?.label
+//            }else{
+//                self.resultLabel.text = ""
+//            }
+//        }
      }
 
 }
