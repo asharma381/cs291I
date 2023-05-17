@@ -1,0 +1,24 @@
+PODS:
+  - InstantSearchVoiceOverlay (1.2.0)
+  - LibTorch (1.13.0.1):
+    - LibTorch/Core (= 1.13.0.1)
+  - LibTorch/Core (1.13.0.1):
+    - LibTorch/Torch
+  - LibTorch/Torch (1.13.0.1)
+
+DEPENDENCIES:
+  - InstantSearchVoiceOverlay
+  - LibTorch
+
+SPEC REPOS:
+  trunk:
+    - InstantSearchVoiceOverlay
+    - LibTorch
+
+SPEC CHECKSUMS:
+  InstantSearchVoiceOverlay: d9d5db7314ec8416dcf4ed49df2000e8ee0abe2b
+  LibTorch: 8abfa5fc9d146230b31065a29b0502e1104956ea
+
+PODFILE CHECKSUM: 58d23742898be5a8641fd55228dfd5371cf88f2b
+
+COCOAPODS: 1.12.0
