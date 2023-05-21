@@ -95,7 +95,7 @@ class ModelViewController: UIViewController {
         guard let pixelBuffer = buffer else { return }
          
 //        let result = predictor.predict(pixelBuffer, resultCount: 2)
-//         
+//
 //        DispatchQueue.main.async {
 //            guard let isEmpty = result?.first?.label.isEmpty, !isEmpty else { return }
 //

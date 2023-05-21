@@ -34,6 +34,8 @@
 		48C87BDD29E4F96D0000A87D /* ARKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C87BDC29E4F96D0000A87D /* ARKitDemoUITestsLaunchTests.swift */; };
 		48C87C0629E500F20000A87D /* notebook.obj in Resources */ = {isa = PBXBuildFile; fileRef = 48C87C0329E500F20000A87D /* notebook.obj */; };
 		48C87C0929E502450000A87D /* Notebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C87C0829E502450000A87D /* Notebook.swift */; };
+		48E567FC2A14C7C9005B83CB /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E567FB2A14C7C9005B83CB /* SwiftUIView.swift */; };
+		48E567FE2A14C835005B83CB /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E567FD2A14C835005B83CB /* SwiftUIViewController.swift */; };
 		6DA104AFB8848C630189D7BD /* Pods_ARKitDemo_ARKitDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0E954C952E6DE971944A85 /* Pods_ARKitDemo_ARKitDemoUITests.framework */; };
 		88DCD7C4B49891B2DB61119E /* Pods_ARKitDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58610D8FB1FAFB8BC3CAEC6 /* Pods_ARKitDemoTests.framework */; };
 		B5D1D472606C32B95E1DFE31 /* Pods_ARKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F697691EDDAF8841453E04DB /* Pods_ARKitDemo.framework */; };
@@ -92,6 +94,8 @@
 		48C87BDC29E4F96D0000A87D /* ARKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		48C87C0329E500F20000A87D /* notebook.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notebook.obj; sourceTree = "<group>"; };
 		48C87C0829E502450000A87D /* Notebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notebook.swift; sourceTree = "<group>"; };
+		48E567FB2A14C7C9005B83CB /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		48E567FD2A14C835005B83CB /* SwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewController.swift; sourceTree = "<group>"; };
 		7BDD68026B1953A8C46B2D2B /* Pods-ARKitDemo-ARKitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitDemo-ARKitDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-ARKitDemo-ARKitDemoUITests/Pods-ARKitDemo-ARKitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E0E954C952E6DE971944A85 /* Pods_ARKitDemo_ARKitDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitDemo_ARKitDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D2220D8017287F9C05BE26 /* Pods-ARKitDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-ARKitDemoTests/Pods-ARKitDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				4812009629E9426200F0DB6A /* ModelViewController.swift */,
 				481200A229E94CAE00F0DB6A /* CVPixelBuffer+Helper.swift */,
 				4812009A29E9440B00F0DB6A /* Predictor.swift */,
+				48E567FD2A14C835005B83CB /* SwiftUIViewController.swift */,
+				48E567FB2A14C7C9005B83CB /* SwiftUIView.swift */,
 				48C87BC229E4F96D0000A87D /* Assets.xcassets */,
 				4812008429E5115200F0DB6A /* Audi R8.dae */,
 				4851D79F29F50A7F00ABAF60 /* blender.dae */,
@@ -489,7 +495,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				481200A029E9473500F0DB6A /* TorchModule.mm in Sources */,
+				48E567FE2A14C835005B83CB /* SwiftUIViewController.swift in Sources */,
 				48C87BBE29E4F96A0000A87D /* ViewController.swift in Sources */,
+				48E567FC2A14C7C9005B83CB /* SwiftUIView.swift in Sources */,
 				48C87BBA29E4F96A0000A87D /* AppDelegate.swift in Sources */,
 				4812009729E9426200F0DB6A /* ModelViewController.swift in Sources */,
 				48C87C0929E502450000A87D /* Notebook.swift in Sources */,

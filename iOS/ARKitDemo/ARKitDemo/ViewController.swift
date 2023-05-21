@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import ARKit
 import Foundation
 import InstantSearchVoiceOverlay
@@ -184,5 +185,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func tapUIButton(){
+        // swiftUI interop
+        let vc = UIHostingController(rootView: SwiftUIView())
+        present(vc, animated: true)
+    }
+
 }
 
