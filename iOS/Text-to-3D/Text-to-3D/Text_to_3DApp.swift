@@ -11,7 +11,7 @@ import SwiftUI
 struct Text_to_3DApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Main()
         }
     }
 }

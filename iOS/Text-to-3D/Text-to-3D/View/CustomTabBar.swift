@@ -9,38 +9,36 @@ import SwiftUI
 
 struct CustomTabBar: View {
     @Binding var selectedTab: String
-    var body: some View {
-        VStack {
-            TabView(selection: $selectedTab) {
-                Text("tab 1")
-                    .tag("house")
-                Text("tab 2")
-                    .tag("camera")
-                Text("tab 3")
-                    .tag("person")
-            }
-            
-            HStack(spacing: 0){
-                // Tab Bar Buttons
-                TabBarButton(image: "house", selectedTab: $selectedTab)
-                TabBarButton(image: "camera", selectedTab: $selectedTab)
-                TabBarButton(image: "person", selectedTab: $selectedTab)
-            }
+    var body: some View {            TabView(selection: $selectedTab) {
+        HomeView()
+            .tag("house")
+        CameraView()
+            .tag("camera")
+        Text("tab 3")
+            .tag("person")
+    }
+    .ignoresSafeArea()
+    .overlay(
+        HStack(spacing: 0){
+            // Tab Bar Buttons
+            TabBarButton(image: "house", selectedTab: $selectedTab)
+            TabBarButton(image: "camera", selectedTab: $selectedTab)
+            TabBarButton(image: "person", selectedTab: $selectedTab)
+        }
             .padding()
             .background(
                 Color(.black)
                     .clipShape(TabCurve())
             )
             .cornerRadius(30)
-            .padding(.horizontal)
-                
-        }
+            .padding(.horizontal),
+        alignment: .bottom)
     }
 }
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Main()
     }
 }
 
@@ -60,16 +58,16 @@ struct TabBarButton: View {
                 }
             }, label: {
                 // filling color if its selected
-                Image(systemName: "\(image)\(selectedTab == image ? ".fill" : "")")
-                    .font(.system(size: 25, weight: .semibold))
+                Image(systemName: "\(image)")
+                    .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(Color.white)
                 // lifing view
-                    .offset(y: selectedTab == image ? -10 : 0)
+                    .offset(y: selectedTab == image ? -5 : 0)
             })
             // Max Frame
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         // max height
-        .frame(height: 50)
+        .frame(height: 30)
     }
 }
