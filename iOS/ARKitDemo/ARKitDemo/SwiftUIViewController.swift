@@ -12,10 +12,13 @@ class SwiftUIViewController: UIViewController {
 
     @IBOutlet weak var theContainer : UIView!
     
+    var path: URL!
+    var display: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let childView = UIHostingController(rootView: SwiftUIView())
+        let childView = UIHostingController(rootView: SwiftUIView(path: path, prompt: ""))
         addChild(childView)
         if theContainer == nil {
             print("container is nil :(")

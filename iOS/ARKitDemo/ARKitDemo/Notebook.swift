@@ -9,13 +9,18 @@ import ARKit
 
 class Notebook: SCNNode {
     func loadModel(path: URL) {
-//        guard let virtualObject = SCNScene(named: "eg.obj") else {return}
+//    func loadModel() {
+//        guard let virtualObject = SCNScene(named: "example_mesh_0.obj") else {return}
         
         guard let virtualObject = try? SCNScene(url: path) else {return}
         // OLD WORKING VERSION
 //        guard let virtualObject = SCNScene(named: "example_mesh_0.obj") else {return}
 
 //        guard let virtualObject = SCNScene(named: "blender.dae") else {return}
+        
+//        virtualObject.rootNode.childNodes.first?.scale = SCNVector3(0.1, 0.1, 0.1)
+//        print(virtualObject.rootNode.childNodes.)
+//        virtualObject.accessibilityFrame.size
         
         print("loaded: ", virtualObject )
         

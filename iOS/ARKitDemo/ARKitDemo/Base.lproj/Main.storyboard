@@ -17,18 +17,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jtn-It-xJa">
-                                <rect key="frame" x="-2" y="-2" width="416" height="835"/>
+                                <rect key="frame" x="-5" y="-3" width="419" height="834"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEp-RI-VJk">
-                                <rect key="frame" x="19" y="841" width="374" height="21"/>
+                                <rect key="frame" x="18" y="839" width="373" height="23"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H37-42-ttJ">
-                                <rect key="frame" x="169" y="228" width="75" height="35"/>
+                                <rect key="frame" x="170" y="228" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Prompt" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="g2Y-fR-IlB">
-                                <rect key="frame" x="107" y="108" width="200" height="34"/>
+                                <rect key="frame" x="103" y="95" width="200" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -51,6 +51,10 @@
                                     <action selector="tapUIButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="7cI-oH-2gD"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aT-ou-ff3">
+                                <rect key="frame" x="344" y="734" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,8 +62,10 @@
                     <connections>
                         <outlet property="counterLabel" destination="PEp-RI-VJk" id="elk-aA-a9C"/>
                         <outlet property="myButton" destination="H37-42-ttJ" id="cDZ-5D-D2j"/>
+                        <outlet property="mySwitch" destination="1aT-ou-ff3" id="taG-UP-isR"/>
                         <outlet property="sceneView" destination="Jtn-It-xJa" id="xmm-ZA-QH9"/>
                         <outlet property="textField" destination="g2Y-fR-IlB" id="9LK-P2-RuT"/>
+                        <outlet property="uiButton" destination="lZs-Vv-dvZ" id="WjH-ze-lfD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,7 +86,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhl-3c-ucv">
-                                <rect key="frame" x="18" y="814" width="374" height="21"/>
+                                <rect key="frame" x="16" y="813" width="376" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -98,6 +104,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAr-dR-Y0c" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1086.9565217391305" y="225"/>
+        </scene>
+        <!--Reality Kit View Controller-->
+        <scene sceneID="nAX-9a-bjG">
+            <objects>
+                <viewController id="G6k-nt-XCI" customClass="RealityKitViewController" customModule="ARKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mXb-c4-mpy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idM-j5-8XT" customClass="Rea">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QgS-PS-ViU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="arView" destination="idM-j5-8XT" id="eQf-cH-xWp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d8E-Cs-3Wh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="379.71014492753625" y="880.58035714285711"/>
         </scene>
         <!--SwiftUI View Controller-->
         <scene sceneID="IV0-C4-OjF">
