@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+MANIFEST
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# XCode
+# User settings
+xcuserdata/
+
+# Build 
+Pods/
+build/
+*.pbxuser
+!default.pbxuser
+
+# App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
