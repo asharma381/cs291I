@@ -43,3 +43,6 @@ build/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+# Mac
+.DS_Store
