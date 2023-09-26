@@ -84,7 +84,7 @@ def get_placement():
 
 
     # Show the image
-    plt.savefig("test_cake_desk_narrow.png")
+    plt.savefig("test_cake_desk_narrow.png", dpi=300)
 
     # t1 = time.time()
     # print("Total time: " + str(t1 - t0))

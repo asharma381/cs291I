@@ -1,0 +1,2 @@
+ls = ['cloth', 'jacket', 'blanket', 'monitor', 'laptop', 'plate', 'chair', 'backpack', 'bag', 'desk', 'computer', 'table', 'bottle', 'seat', 'comforter', 'printer', 'devices', 'paper', 'bench', 'lid']
+print(", ".join([f"""{item}""" for item in ls]))

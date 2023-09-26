@@ -46,12 +46,13 @@ def vqa_pipeline(image):
     # Get text for each bounding box
     captions = do_get_texts(image, boxes)
     captions += ["floor"]
-    print("Got texts")
-    print(captions)
+    # print("Got texts")
+    # print(captions)
     # Get all nouns
     nouns = do_get_nouns(captions)
     print(f"Got nouns: {nouns}")
     filtered = do_filter_nouns(image, nouns)
+    print(f"Filtered: {filtered}")
     return filtered
 
 def get_info():
@@ -68,31 +69,36 @@ def get_info():
     print("Total", count, "objects in", len(scenes), "scenes")
     print("GPT-4 got", fails, "wrong!")
 
-if __name__ == "__main__":
-    output_data = {}
-    f = open('good_data2.json')
-    data = json.load(f)
-    scenes = list(data.keys())
-    for n, i in enumerate(scenes):
-        print("Processing image #", n)
-        # img_path = 'exp_imgs/rgb_training_' + i + '.mat.png'
-        img_path = 'exp_imgs/' + i
-        output_data[img_path] = {}
-        image = Image.open(img_path)
-        # print(img_path)
-        objs = list(data[i].keys())
-        centers = get_centers(image)
+# TEST CODE TO CREATE FIGURES:
+image = Image.open("desk_narrow.jpg")
+filtered_nouns = vqa_pipeline(image)
+
+# ACTUAL CODE:
+# if __name__ == "__main__":
+#     output_data = {}
+#     f = open('good_data2.json')
+#     data = json.load(f)
+#     scenes = list(data.keys())
+#     for n, i in enumerate(scenes):
+#         print("Processing image #", n)
+#         # img_path = 'exp_imgs/rgb_training_' + i + '.mat.png'
+#         img_path = 'exp_imgs/' + i
+#         output_data[img_path] = {}
+#         image = Image.open(img_path)
+#         # print(img_path)
+#         objs = list(data[i].keys())
+#         centers = get_centers(image)
         
-        for o in objs:
-            x, y = get_placement(centers, o)
-            # x, y = 342.65625, 337.23295454545456
-            output_data[img_path][o] = [x,y]
+#         for o in objs:
+#             x, y = get_placement(centers, o)
+#             # x, y = 342.65625, 337.23295454545456
+#             output_data[img_path][o] = [x,y]
             
-            # with open("octopus_exp.json", "r") as file:
-                # data_file = json.load(file)
-            # data_file = open("octopus_exp.json")
-            # json.dump(output_data, data_file)
-            json.dump(output_data, open("octopus_exp_2_old.json", "w"))
+#             # with open("octopus_exp.json", "r") as file:
+#                 # data_file = json.load(file)
+#             # data_file = open("octopus_exp.json")
+#             # json.dump(output_data, data_file)
+#             json.dump(output_data, open("octopus_exp_2_old.json", "w"))
 
 
 

@@ -31,4 +31,4 @@ def generate_images(json_name: str, folder_name: str, image_dir: str="exp_imgs")
             plt.close()
 
 
-generate_images("bad_data.json", "all_bad_locs")
+generate_images("example_data_cat.json", "ex_tie_locs", "../eval/mturk_examples")
