@@ -25,6 +25,7 @@ def do_get_best_noun(nouns, prompt) -> str:
     #     gpt_prompt = gpt_prompt + " " + i + ","
     gpt_prompt += ", ".join(nouns)
     gpt_prompt += f". The {prompt} was located on the _."
+    print(gpt_prompt)
     # openai gpt-4
     message = [{"role": "user", "content": gpt_prompt}]
     response = completion_with_backoff(
@@ -40,8 +41,8 @@ def do_get_best_noun(nouns, prompt) -> str:
 
 # testing
 if __name__ == "__main__":
-    nouns = {"floor":1, "desk":2, "table":3, "computer":4, "chair":5}
-    prompt = "cake"
+    nouns = ['note', 'photo', 'laptop,', 'table', 'cloth', 'background', 'monitor,', 'bag', 'sticker', 'computer', 'jacket', 'backpack', 'devices', 'printer', 'seat', 'chair', 'object', 'mouse', 'box', 'floor', 'laptop', 'monitor', 'top', 'paper', 'bottle', 'blanket', 'pair', 'plate', 'types', 'desk', 'bowl', 'metal', 'lid']
+    prompt = "cupcake"
 
     best_noun = do_get_best_noun(nouns, prompt)
     print(best_noun)

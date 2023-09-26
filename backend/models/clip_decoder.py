@@ -12,15 +12,21 @@ def do_get_texts(image: Image.Image, boxes: List[List[int]]) -> List[str]:
     dc_model.to(device)
 
     captions = []
+    print("START:------------")
+    i = 0
     for x, y, w, h in boxes:
         cropped = image.crop((x, y, x + w, y + h))
         caption = dc_model(cropped, beam_size=1)
+        cropped.save(f"caption_imgs/{i}_{caption}.png")
+        print(caption)
         # fig, ax = plt.subplots(1, 1, figsize=(6, 6))
         # ax.imshow(cropped)
         # plt.savefig("clip_decoder" + str(x)+ ".png")
         # print(caption)
         caption_list = caption.lower().replace(".", "").split(" ")
         captions.extend(caption_list)
+        i += 1
+    print("END:--------------")
     return captions
 
 

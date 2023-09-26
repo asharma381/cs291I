@@ -1,4 +1,9 @@
-from transformers import CLIPSegProcessor, CLIPSegForImageSegmentation, ViltProcessor, ViltForQuestionAnswering
+from transformers import (
+    CLIPSegProcessor,
+    CLIPSegForImageSegmentation,
+    ViltProcessor,
+    ViltForQuestionAnswering,
+)
 import torch
 from PIL import Image
 from typing import Dict, Tuple, List
@@ -18,9 +23,7 @@ vqa_processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 vqa_model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 
 
-def do_filter_nouns(
-    image: Image.Image, nouns: List[str]
-) -> List[str]:
+def do_filter_nouns(image: Image.Image, nouns: List[str]) -> List[str]:
     # vqa to determine if in image
     prompts = []
     for noun in nouns:
@@ -32,9 +35,10 @@ def do_filter_nouns(
         in_image = vqa_model.config.id2label[idx]
         if "yes" in in_image.lower():
             prompts.append(noun)
-        
+
     print(f"In image: {prompts}")
     return prompts
+
 
 def do_get_center(image: Image.Image, prompt: str) -> Tuple[int, int]:
     # clip seg
@@ -59,7 +63,6 @@ def do_get_center(image: Image.Image, prompt: str) -> Tuple[int, int]:
     return cx, cy
 
 
-
 def do_get_centers(
     image: Image.Image, prompts: List[str], k: int = 20
 ) -> Dict[str, Tuple[int, int]]:
@@ -77,13 +80,15 @@ def do_get_centers(
         outputs = model(**inputs)  # type: ignore
         preds = outputs.logits.unsqueeze(1)
 
-
     fig, ax = plt.subplots()
 
     for i in range(len(prompts)):
+        if prompts[i] == "plate":
+            plate_index = i
         heatmap = preds[i][0].numpy()
         heatmap = heatmap - np.min(heatmap)
         cy, cx = np.unravel_index(heatmap.argmax(), heatmap.shape)
+        print(np.min(heatmap), np.max(heatmap), np.sum(heatmap))
         # uncomment for now
         # print(prompts[i], ": (y,x) = ", heatmap[int(cy)][int(cx)])
         val = heatmap[int(cy)][int(cx)]
@@ -97,10 +102,12 @@ def do_get_centers(
         # add to dict
         prompts[i] = prompts[i].replace(",", "")
         centers[prompts[i]] = (cx, cy, val)
+    original_centers = centers
 
     # centers = dict(sorted(centers.items(), key=lambda x: x[1][2], reverse=True))
     sorted_centers = sorted(centers.items(), key=lambda x: x[1][2], reverse=True)
     print(type(sorted_centers))
+    print(sorted_centers)
     if len(centers) > k:
         centers = dict(sorted_centers[:k])
         # centers = list(islice(centers.iter))
@@ -131,70 +138,150 @@ def do_get_centers(
     ax.scatter(cx, cy, s=160, c="C0", marker="+")
     ax.imshow(image)
 
-    _, ax = plt.subplots(1, len(prompts) + 1, figsize=(3*(len(prompts) + 1), 4))
-    [a.axis('off') for a in ax.flatten()]
+    fig, ax = plt.subplots()
+    cx, cy, val = original_centers["plate"]
+    ax.imshow(preds[plate_index][0])
+    ax.scatter(cx, cy, s=160, c="red", marker="+")
+    plt.savefig("test69.png")
+
+    _, ax = plt.subplots(1, len(prompts) + 1, figsize=(3 * (len(prompts) + 1), 4))
+    [a.axis("off") for a in ax.flatten()]
     ax[0].imshow(image)
-    [ax[i+1].imshow(preds[i][0]) for i in range(len(prompts))]
-    [ax[i+1].text(0, -15, prompt) for i, prompt in enumerate(prompts)]
-    plt.savefig("test.png")
+    [ax[i + 1].imshow(preds[i][0]) for i in range(len(prompts))]
+    # for i, prompt in enumerate(prompts):
+    #     ax[i + 1].scatter(original_centers[prompt][0], original_centers[prompt][1], s=160, c="C0", marker="+")
+    [ax[i + 1].text(0, -15, f"{prompt}: {original_centers[prompt][2]}") for i, prompt in enumerate(prompts)]
+    plt.savefig("test_yes.png")
     return centers
 
 
 if __name__ == "__main__":
-    image = Image.open("../narrow.jpg")
+    image = Image.open("../desk_narrow.jpg")
+    # test_nouns = [
+    #     "carpet",
+    #     "coffee",
+    #     "top",
+    #     "cloth",
+    #     "blanket",
+    #     "tablet",
+    #     "view",
+    #     "chairs",
+    #     "seat",
+    #     "sink",
+    #     "chair",
+    #     "floor",
+    #     "holder",
+    #     "building",
+    #     "faucet",
+    #     "hole",
+    #     "up",
+    #     "room",
+    #     "round",
+    #     "pair",
+    #     "cup",
+    #     "background",
+    #     "desk",
+    #     "computer",
+    #     "truck",
+    #     "toothbrush",
+    #     "object",
+    #     "backpack",
+    #     "plate",
+    #     "window",
+    #     "square",
+    #     "piece",
+    #     "photo",
+    #     "keyboard",
+    #     "scissors",
+    #     "envelope",
+    #     "table",
+    #     "forest",
+    #     "tree",
+    #     "laptop",
+    #     "train",
+    #     "wood",
+    #     "metal",
+    #     "ring",
+    #     "close",
+    #     "street",
+    #     "cat",
+    #     "bed",
+    #     "cover",
+    #     "picture",
+    #     "mouse",
+    #     "box",
+    # ]
     test_nouns = [
-        "carpet",
-        "coffee",
-        "top",
-        "cloth",
-        "blanket",
-        "tablet",
-        "view",
-        "chairs",
-        "seat",
-        "sink",
-        "chair",
-        "floor",
-        "holder",
-        "building",
-        "faucet",
-        "hole",
-        "up",
-        "room",
-        "round",
-        "pair",
-        "cup",
-        "background",
-        "desk",
-        "computer",
-        "truck",
-        "toothbrush",
-        "object",
-        "backpack",
-        "plate",
-        "window",
-        "square",
-        "piece",
+        "tie",
+        "note",
+        "bench",
+        "propeller",
+        "camera",
+        "face",
         "photo",
-        "keyboard",
-        "scissors",
-        "envelope",
+        "laptop,",
+        "man",
         "table",
-        "forest",
-        "tree",
-        "laptop",
-        "train",
-        "wood",
-        "metal",
-        "ring",
-        "close",
-        "street",
         "cat",
-        "bed",
-        "cover",
+        "up",
+        "cloth",
+        "paw",
+        "background",
+        "monitor,",
+        "bag",
+        "flowers",
         "picture",
+        "window",
+        "sticker",
+        "umbrella",
+        "broccoli",
+        "computer",
+        "jacket",
+        "backpack",
+        "devices",
+        "printer",
+        "seat",
+        "chair",
+        "water",
+        "object",
+        "bed",
         "mouse",
         "box",
+        "faucet",
+        "person",
+        "pile",
+        "floor",
+        "cat's",
+        "laptop",
+        "soup",
+        "monitor",
+        "close",
+        "bear",
+        "image",
+        "sky",
+        "shoes",
+        "person's",
+        "plane",
+        "top",
+        "paper",
+        "bottle",
+        "blanket",
+        "pair",
+        "plate",
+        "cake",
+        "types",
+        "desk",
+        "toilet",
+        "bowl",
+        "vase",
+        "head",
+        "metal",
+        "comforter",
+        "lid",
+        "pillow",
+        "food",
+        "sink",
+        "headboard",
     ]
     centers = do_get_centers(image, test_nouns)
     print(centers)
