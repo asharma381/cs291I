@@ -1,5 +1,4 @@
 import json
-import re
 
 JSON_PATH = "vilt.json"
 

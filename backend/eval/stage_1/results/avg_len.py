@@ -1,8 +1,8 @@
 import json
 
 # JSON_FILE = "../vilt/vilt_cleaned.json"
-JSON_FILE = "../gdino/gdino_comma_sep_25_cleaned.json"
-
+# JSON_FILE = "../gdino/gdino_comma_sep_25_cleaned.json"
+JSON_FILE = "../clipseg/clipseg_15_cleaned.json"
 
 data = json.load(open(JSON_FILE))
 
