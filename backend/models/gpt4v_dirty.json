@@ -1,0 +1,111 @@
+{
+    "000007.png": {
+        "apple": "Table",
+        "cake": "Table.",
+        "cup": "Table",
+        "plate": "Table",
+        "vase": "Table",
+        "stool": "Floor",
+        "painting": "Wall",
+        "lamp": "Table.",
+        "book": "Table",
+        "bag": "Table",
+        "cushion": "Chair",
+        "shoes": "Floor",
+        "pencil": "Table",
+        "cat": "Chair",
+        "computer": "Desk"
+    },
+    "000014.png": {
+        "apple": "Table",
+        "cake": "Table",
+        "cup": "Table",
+        "plate": "Table.",
+        "vase": "Windowsill",
+        "stool": "Floor",
+        "painting": "Wall",
+        "lamp": "Table",
+        "book": "Windowsill",
+        "bag": "Sofa",
+        "cushion": "Sofa",
+        "shoes": "Floor",
+        "pencil": "Desk",
+        "cat": "Windowsill",
+        "computer": "Desk"
+    },
+    "000056.png": {
+        "apple": "Nightstand",
+        "cup": "Nightstand",
+        "plate": "Nightstand",
+        "vase": "Nightstand.",
+        "stool": "Floor",
+        "painting": "Wall",
+        "lamp": "Nightstand",
+        "book": "Nightstand",
+        "bag": "Bedside table",
+        "cushion": "Bed",
+        "shoes": "Floor",
+        "pencil": "Nightstand",
+        "cat": "Bed"
+    },
+    "000084.png": {
+        "stool": "Aisle floor",
+        "book": "Bookshelf",
+        "bag": "Table.",
+        "shoes": "Floor"
+    },
+    "000091.png": {
+        "apple": "Table",
+        "cake": "Table",
+        "cup": "Table",
+        "plate": "Table",
+        "vase": "Table",
+        "stool": "Floor",
+        "painting": "Wall",
+        "lamp": "Table",
+        "book": "Table",
+        "shoes": "Shelf",
+        "pencil": "Table",
+        "computer": "Table"
+    },
+    "000098.png": {
+        "cup": "Shelf",
+        "vase": "Counter",
+        "stool": "Floor",
+        "book": "Shelf",
+        "bag": "Counter",
+        "shoes": "Shelf",
+        "pencil": "Desk",
+        "cat": "Shelf"
+    },
+    "000105.png": {
+        "stool": "Floor",
+        "book": "On a shelf.",
+        "bag": "Floor",
+        "shoes": "Shelf",
+        "cat": "Shelf"
+    },
+    "000112.png": {
+        "cup": "Counter.",
+        "lamp": "Countertop",
+        "book": "Shelf",
+        "pencil": "Desk",
+        "computer": "Countertop."
+    },
+    "000126.png": {
+        "apple": "Countertop",
+        "cake": "Countertop.",
+        "cup": "Countertop.",
+        "plate": "Countertop",
+        "stool": "Floor",
+        "painting": "Wall",
+        "book": "Countertop",
+        "cat": "Countertop."
+    },
+    "000133.png": {
+        "cup": "Countertop",
+        "plate": "Countertop",
+        "stool": "Floor",
+        "painting": "Wall"
+    }
+}
