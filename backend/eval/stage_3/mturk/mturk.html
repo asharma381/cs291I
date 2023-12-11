@@ -1,0 +1,343 @@
+    <!-- You must include this JavaScript file -->
+    <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+    <!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+        please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+    <style>
+        #whole-display {
+            width: 100vw;
+        }
+        .question-img {
+            max-width: 100%; 
+            max-height: 500px; 
+            margin-bottom: 10px
+        }
+        hr.dashed {
+        border-top: 3px dashed #bbb;
+        }
+        /* Rounded border */
+        hr.rounded {
+        border-top: 8px solid #bbb;
+        border-radius: 5px;
+        }    
+        .choices {
+            display: flex;
+            align-items: start;
+            justify-items: center;
+            max-width: 50%;
+        }
+        .test-choice {
+            margin-bottom: 10px
+        }
+        .ans {
+            display: flex;
+            /* flex-direction: column; */
+            min-width: 15vw;
+            padding: 10px;
+            border: solid 1px silver;
+            background-color: white;
+        }
+        .ans:hover{
+            background-color: silver;
+            cursor: pointer;
+        }
+        #instruction-wrapper {
+            background-color: aliceblue;
+            border-radius: 5px;
+            margin: 20px 5vw;
+            padding: 10px;
+            width: 90vw;
+            box-shadow: 0 0 5px grey;
+        }
+        #instruction-box {
+            background-color: yellow;
+            border-radius: 5px;
+            /*border: 1px silver solid;*/
+            margin: 20px 5vw;
+            padding: 10px;
+            width: 90vw;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 0 5px grey;
+        }
+        #question-display {
+            display: none;
+        }
+        .problem-wrapper {
+            background-color: aliceblue;
+            border-radius: 5px;
+            /*border: 1px silver solid;*/
+            margin: 20px 5vw;
+            padding: 10px;
+            width: 90vw;
+            box-shadow: 0 0 5px grey;
+        }
+        #submit-wrapper {
+            width: 100vw;   
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .column {
+            float: left;
+            width: 40%;
+            padding-left: 60px;
+            padding-right:60px;
+            text-align: center;
+        }
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+
+    <script>
+        function validateForm(){
+            var valid = true;
+            var radioGroups = document.querySelectorAll('crowd-radio-group');
+            for (var i = 0; i < radioGroups.length; i++) {
+                var validGroup = false;
+                var radioButtons = radioGroups[i].children;
+                for(var j = 0; j < radioButtons.length; j++){
+                    validGroup = validGroup || radioButtons[j].checked;
+                }
+                valid = valid && validGroup;
+            }
+            return valid;
+        }
+
+        window.onload = function() {
+            document.querySelector('crowd-form').onsubmit = function(e) {
+                if(!validateForm()) {
+                    alert("Please answer all questions before submitting the HIT.");
+                    e.preventDefault();
+                }
+            }
+        }
+    </script>
+    <!-- You must include crowd-form so that your task submits answers to MTurk -->
+    <crowd-form answer-format="flatten-objects">
+            <div id="instruction-wrapper">
+            <h2 style="margin: 0; padding: 0px 0;">Overview</h2><br>
+            Thank you for helping us with our research! Please read the instructions below before starting.<br> 
+            <br>
+                <h3><strong>Instruction:</strong></h3>
+            Each image contains a <strong><span style="color: rgb(231, 4, 4);"> red circle </span></strong> marking the location where an <strong><span style="color: rgb(39, 156, 51);">object</span></strong> should be placed. The <strong><span style="color: rgb(39, 156, 51);">object</span></strong> is specified in each question. Your task is to choose which of the two images proposes a more natural location for the object to be placed.
+            <br>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center><u><strong>Example 1</strong></u><p>
+                Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">book</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_l/000009_book.png"/>
+                        </center>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_r/000009_book.png"/>
+                        </center>
+                    </div>
+                </div>
+                </h3>
+                <div class="row" style="padding-left:100px;padding-right:100px;">
+                <h4>In this example, <span style="color: rgb(0, 141, 216);">IMAGE 2</span> suggests a more suitable location for the <span style="color: rgb(39, 156, 51);">book</span>. It is more natural to find a <span style="color: rgb(39, 156, 51);">book</span> placed on a desk than on the ground. Since there are other notes and supplies on the table, it is most appropriate to place the book with other desk accessories.
+                </div>    
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center><u><strong>Example 2</strong></u><p>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">plate</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_l/000002_plate.png"/>
+                        </center>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_r/000002_plate.png"/>
+                        </center>
+                    </div>
+                </div>
+                </h3>
+                <div class="row" style="padding-left:100px;padding-right:100px;">
+                    <h4>In this example, <span style="color: rgb(0, 141, 216);">IMAGE 1</span> suggests a more suitable location for the <span style="color: rgb(39, 156, 51);">plate</span>. It is more natural to find a <span style="color: rgb(39, 156, 51);">plate</span> placed on the kitchen counter than on the wall. Since there is a bowl placed on the counter next to the sink, it is the most appropriate position for the plate.
+                </div> 
+            </p>
+            <p class="question-txt"><b>
+                <h3><center><u><strong>Example 3</strong></u><p>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">cat</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_l/eval_cat1.png"/>
+                        </center>
+                     </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="https://291i.s3.amazonaws.com/exp_r/eval_cat2.png"/>
+                        </center>
+                    </div>
+                </div>
+                </h3>
+                <div class="row" style="padding-left:100px;padding-right:100px;">
+                    <h4>In this example, <span style="color: rgb(0, 141, 216);">IMAGE 1</span> and  <span style="color: rgb(0, 141, 216);">IMAGE 2</span> are both equally natural locations for a <span style="color: rgb(39, 156, 51);">cat</span>, as cats can both sit on the couch or on the floor.
+                </div> 
+            </p>
+        </div>
+        <div class="problem-wrapper">
+            <h2 style="margin: 0; padding: 0px 0;">Task</h2><br>
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj1}</span> to be placed? If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl1}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr1}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="11" value="11">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="12" value="12">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="13" value="13">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj2}</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl2}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr2}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="21" value="21">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="22" value="22">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="23" value="23">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj3}</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl3}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr3}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="31" value="31">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="32" value="32">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="33" value="33">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj4}</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl4}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr4}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="41" value="41">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="42" value="42">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="43" value="43">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj5}</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl5}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr5}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="51" value="51">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="52" value="52">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="53" value="53">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+            <hr class="dashed">
+            <p class="question-txt"><b>
+                <h3><center>
+                    Which of the two images proposes a more natural location for the <span style="color: rgb(39, 156, 51);">${obj6}</span> to be placed?  If both locations are equally natural, then select tie.</center>
+                <div class="row">
+                    <div class="column">
+                        <center><p>IMAGE 1</p>
+                        <img src="${imgl6}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <div class="column">
+                        <center><p>IMAGE 2</p>
+                        <img src="${imgr6}"/>
+                        </center>
+                        <p>
+                    </div>
+                    <center><crowd-radio-group>
+                        <crowd-radio-button name="61" value="61">Image 1</crowd-radio-button>
+                        <crowd-radio-button name="62" value="62">Image 2</crowd-radio-button>
+                        <crowd-radio-button name="63" value="63">Tie</crowd-radio-button>
+                    </crowd-radio-group></center>
+                </div>
+                </h3>
+            </p>
+        </div>
+    </crowd-form>
